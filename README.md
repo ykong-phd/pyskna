@@ -10,7 +10,7 @@ pip install pyskna
 
 ```python
 import pandas as pd
-from your_package import extract_iSKNA, extract_TVSKNA
+from pyskna import extract_iSKNA, extract_TVSKNA
 
 # Load EKG file
 EKG = pd.read_csv("example_ekg.csv", header=None).to_numpy().reshape(-1)
