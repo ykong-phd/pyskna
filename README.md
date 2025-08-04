@@ -72,8 +72,9 @@ This project includes code that implements an algorithm covered by **U.S. Patent
 
 The following file is **not covered under the standard MIT license** and is **restricted to non-commercial academic research use**:
 
-- `pyskna/libs/libvfcdm5.dll`
-- `pyskna/libs/libvfcdm5.so`
+- `pyskna/libs/libvfcdm5_win64.dll`
+- `pyskna/libs/libvfcdm5_linux64.so`
+- `pyskna/libs/libvfcdm5_mac64.dylib`
 
 See [`PATENT_NOTICE.md`](./PATENT_NOTICE.md) and the `LICENSE` file for full licensing terms.
 
