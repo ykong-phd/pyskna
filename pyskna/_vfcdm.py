@@ -1,17 +1,7 @@
 # pyskna/_vfcdm.py (internal binding)
 
 """
-This file implements an algorithm covered by U.S. Patent No. US8858450B2 and utilizes the following platform-specific libraries:
-
-    libs/libvfcdm5_win64.dll (Windows)
-    libs/libvfcdm5_linux64.so (Linux)
-    libs/libvfcdm5_mac64.dylib (macOS)
-
-Licensed for non-commercial academic and research use only.
-
-Commercial use requires a separate license. Contact: ki.chon@uconn.edu
-
-See LICENSE.md and PATENT_NOTICE.md for details.
+See LICENSE.md for details.
 """
 
 

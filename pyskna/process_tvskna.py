@@ -59,7 +59,6 @@ def extract_TVSKNA(
         raise ValueError("Thread number should be 1-12")
     
     ensure_vfcdm()
-    
 
     input_ary1 = input_ary.copy()
 
