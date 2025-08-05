@@ -1,7 +1,6 @@
 # pyskna/process.py
 import numpy as np
 
-import matplotlib.pyplot as plt
 from scipy.ndimage import uniform_filter1d
 from typing import Dict
 from scipy import signal

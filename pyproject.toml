@@ -6,14 +6,16 @@ authors = [{ name = "Youngsun Kong, Ph.D.", email = "youngsun.kong.phd@gmail.com
 readme = "README.md"
 requires-python = ">=3.7"
 license = { text = "MIT" }
-dependencies = []
+dependencies = ["numpy", "scipy"]
 keywords = ["SKNA", "TVSKNA", "iSKNA", "biosignal", "neuroscience", "biomedical", "MIT", "non-commercial"]
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Intended Audience :: Science/Research",
     "Topic :: Scientific/Engineering :: Medical Science Apps.",
-    "Operating System :: Windows, Linux, and macOS"
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS :: MacOS X"
 ]
 
 [build-system]

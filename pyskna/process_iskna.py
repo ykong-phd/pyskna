@@ -2,7 +2,6 @@
 import numpy as np
 from scipy import signal
 from os.path import join
-import matplotlib.pyplot as plt
 from scipy.ndimage import uniform_filter1d
 from typing import Dict
 
