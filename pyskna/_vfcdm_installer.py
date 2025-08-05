@@ -24,13 +24,34 @@ def vfcdm_installed():
         f.endswith((".dll", ".so", ".dylib")) for f in os.listdir(INSTALL_DIR)
     )
 
+def ask_terms_acceptance():
+    """
+    Ask the user if they accept the terms.
+    Returns True if accepted, False otherwise.
+    """
+    valid_yes = {"yes", "y"}
+    valid_no = {"no", "n"}
+
+    try:
+        while True:
+            resp = input("Do you accept the terms? [yes (y) / no (n)]: ").strip().lower()
+            if resp in valid_yes:
+                return True
+            elif resp in valid_no:
+                return False
+            else:
+                print("Invalid input. Please type 'yes' (or 'y') to accept, or 'no' (or 'n') to decline.")
+    except KeyboardInterrupt:
+        print("\nOperation cancelled by user.")
+        return False
+
 def prompt_license():
     LICENSE_TEXT = fetch_latest_license()
     print("\n=== VFCDM LICENSE AGREEMENT ===")
     print(LICENSE_TEXT)
     print("===============================")
-    resp = input("Do you accept the terms? [yes/no]: ").strip().lower()
-    return resp == "yes"
+    
+    return ask_terms_acceptance()
 
 def download_and_install():
     print("Downloading VFCDM...")
