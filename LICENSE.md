@@ -27,15 +27,9 @@ SOFTWARE.
 
 ---
 ## 2. **Notice regarding VFCDM functionality**:  
-Some functions in this library interface with the **VFCDM** algorithm covered by  
-U.S. Patent No. **US8858450B2**, owned by Ki Chon, Ph.D. and Kihwan Ju, Ph.D.  
-(Assignee: Research Foundation of the State University of New York).
+Some functions in this library interface with the **VFCDM** algorithm covered by U.S. Patent No. **US8858450B2**, owned by Ki Chon, Ph.D. and Kihwan Ju, Ph.D. (Assignee: Research Foundation of the State University of New York).
 
-The VFCDM implementation is **not** included in this repository.  
-It is distributed separately as precompiled binaries in the  
-[VFCDM Binaries repository](https://github.com/ykong-phd/vfcdm-binaries)  
-and is licensed **solely for non-commercial, academic, and research use**.
+The VFCDM implementation is **not** included in this repository. It is distributed separately as precompiled binaries in the [VFCDM Binaries repository](https://github.com/ykong-phd/vfcdm-binaries) and is licensed **solely for non-commercial, academic, and research use**.
 
 By using VFCDM-related functions (e.g., **process_tvskna**) in PySKNA, you agree to the  
-[LICENSE.md](https://github.com/ykong-phd/vfcdm-binaries/blob/main/LICENSE.md)  
-and [PATENT_NOTICE.md](https://github.com/ykong-phd/vfcdm-binaries/blob/main/PATENT_NOTICE.md) provided in the VFCDM Binaries repository.
+[LICENSE.md](https://github.com/ykong-phd/vfcdm-binaries/blob/main/LICENSE.md) and [PATENT_NOTICE.md](https://github.com/ykong-phd/vfcdm-binaries/blob/main/PATENT_NOTICE.md) provided in the VFCDM Binaries repository.
