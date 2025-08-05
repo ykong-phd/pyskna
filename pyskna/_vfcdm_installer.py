@@ -49,6 +49,7 @@ def prompt_license():
     LICENSE_TEXT = fetch_latest_license()
     print("\n=== VFCDM LICENSE AGREEMENT ===")
     print(LICENSE_TEXT)
+    print("\nLICENSE.md can be found at:\n" + LICENSE_URL + "\n")
     print("===============================")
     
     return ask_terms_acceptance()

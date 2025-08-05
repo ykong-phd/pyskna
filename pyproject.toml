@@ -1,6 +1,6 @@
 [project]
 name = "pyskna"
-version = "0.1.0.post2"
+version = "0.1.0.post3"
 description = "This toolbox provides computation methods for skin sympathetic nerve activity (SKNA), which can be derived from electrocardiogram (ECG) signals collected under specific recording conditions."
 authors = [{ name = "Youngsun Kong, Ph.D.", email = "youngsun.kong.phd@gmail.com" }]
 readme = "README.md"
