@@ -7,7 +7,11 @@ import zipfile
 import urllib.request
 
 VFCDM_URL = "https://github.com/ykong-phd/vfcdm-binaries/releases/download/v1.0.0/vfcdm-v1.0.0.zip"
-INSTALL_DIR = os.path.join(os.path.expanduser("~"), ".vfcdm")
+PACKAGE_DIR = os.path.dirname(__file__)  # Path to pyskna/
+
+# Path to libs/ inside the package
+INSTALL_DIR = os.path.join(PACKAGE_DIR, "libs")
+os.makedirs(INSTALL_DIR, exist_ok=True)
 
 LICENSE_URL = "https://raw.githubusercontent.com/ykong-phd/vfcdm-binaries/refs/heads/main/LICENSE.md"
 

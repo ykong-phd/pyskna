@@ -23,10 +23,10 @@ def load_vfcdmC():
         return  # Already loaded
     # Load the shared library once
     lib_path = get_library_path()
-    lib = ctypes.CDLL(str(lib_path.resolve()))
+    _lib = ctypes.CDLL(str(lib_path.resolve()))
 
     # Define the C function signature once
-    lib.vfcdm1.argtypes = [
+    _lib.vfcdm1.argtypes = [
         ctypes.POINTER(ctypes.POINTER(ctypes.c_float)), 
         ctypes.POINTER(ctypes.POINTER(ctypes.c_float)), 
         ctypes.POINTER(ctypes.c_int),
@@ -38,16 +38,17 @@ def load_vfcdmC():
         ctypes.c_int,
         ctypes.c_int
     ]
-    lib.vfcdm1.restype = ctypes.c_int
+    _lib.vfcdm1.restype = ctypes.c_int
 
     # Export the function
-    _vfcdm1 = lib.vfcdm1
+    _vfcdm1 = _lib.vfcdm1
 
 
 
 def get_library_path():
     """Detect platform and architecture, return path to correct shared library."""
-    base = Path(__file__).parent / ".vfcdm"
+    
+    base = Path(__file__).parent / "libs"
     system = platform.system()
     bits = struct.calcsize("P") * 8  # 32 or 64
 
