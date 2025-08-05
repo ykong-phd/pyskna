@@ -183,4 +183,5 @@ cython_debug/
 # Others
 .DS_Store
 .swap
+pyskna/libs
 

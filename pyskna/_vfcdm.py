@@ -48,7 +48,7 @@ def load_vfcdmC():
 def get_library_path():
     """Detect platform and architecture, return path to correct shared library."""
     
-    base = Path(__file__).parent / "libs"
+    base = Path(__file__).parent / "libs" / "vfcdm_binaries"
     system = platform.system()
     bits = struct.calcsize("P") * 8  # 32 or 64
 
