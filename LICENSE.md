@@ -1,10 +1,6 @@
 # License
 
-This repository uses a **dual license**:
-
-1. **MIT License** – applies to all files **except** those listed in `PATENT_NOTICE.md`.  
-2. **VFCDM Compiled Library License** – applies **only** to the files listed in `PATENT_NOTICE.md`.
-
+This repository is licensed under the **MIT License**.
 ---
 
 ## 1. MIT License  
@@ -32,7 +28,7 @@ SOFTWARE.
 
 ---
 ## 2. VFCDM Compiled Library License  
-*(applies only to the files listed in `PATENT_NOTICE.md`)*
+
 
 Copyright (c) 2025 Youngsun Kong  
 All rights reserved.

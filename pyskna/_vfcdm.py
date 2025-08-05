@@ -23,9 +23,41 @@ import platform
 import struct
 from pathlib import Path
 
+_lib = None
+_vfcdm1 = None
+
+
+def load_vfcdmC():
+    global _lib, _vfcdm1
+    if _lib is not None:
+        return  # Already loaded
+    # Load the shared library once
+    lib_path = get_library_path()
+    lib = ctypes.CDLL(str(lib_path.resolve()))
+
+    # Define the C function signature once
+    lib.vfcdm1.argtypes = [
+        ctypes.POINTER(ctypes.POINTER(ctypes.c_float)), 
+        ctypes.POINTER(ctypes.POINTER(ctypes.c_float)), 
+        ctypes.POINTER(ctypes.c_int),
+        ctypes.POINTER(ctypes.c_float),
+        ctypes.c_int,
+        ctypes.c_float,
+        ctypes.POINTER(ctypes.c_float),
+        ctypes.POINTER(ctypes.c_float),
+        ctypes.c_int,
+        ctypes.c_int
+    ]
+    lib.vfcdm1.restype = ctypes.c_int
+
+    # Export the function
+    _vfcdm1 = lib.vfcdm1
+
+
+
 def get_library_path():
     """Detect platform and architecture, return path to correct shared library."""
-    base = Path(__file__).parent / "libs"
+    base = Path(__file__).parent / ".vfcdm"
     system = platform.system()
     bits = struct.calcsize("P") * 8  # 32 or 64
 
@@ -54,6 +86,9 @@ def run_vfcdmC(
         raise ValueError("The input_ary must be a 1D array")
     if thread_n > 12 or thread_n < 1:
         raise ValueError("Thread number should be 1-12")
+    
+    if _vfcdm1 is None:
+        load_vfcdmC()
 
     data = input_ary.astype(np.float32)
     N = len(data)
@@ -80,7 +115,7 @@ def run_vfcdmC(
     B = B.ctypes.data_as(ctypes.POINTER(ctypes.c_float))
     B1 = B1.ctypes.data_as(ctypes.POINTER(ctypes.c_float))
 
-    lib.vfcdm1(comp1, comp2, ctypes.byref(channels), x, ctypes.c_int(data.size), ctypes.c_float(fw), B, B1, ctypes.c_int(B_size), ctypes.c_int(thread_n)) 
+    _lib.vfcdm1(comp1, comp2, ctypes.byref(channels), x, ctypes.c_int(data.size), ctypes.c_float(fw), B, B1, ctypes.c_int(B_size), ctypes.c_int(thread_n)) 
     
     return_data = np.zeros([num_channels,N])
     
@@ -90,26 +125,3 @@ def run_vfcdmC(
         return_data[i,:] = comp1_data
     
     return return_data
-
-# Load the shared library once
-lib_path = get_library_path()
-lib = ctypes.CDLL(str(lib_path.resolve()))
-
-# Define the C function signature once
-lib.vfcdm1.argtypes = [
-    ctypes.POINTER(ctypes.POINTER(ctypes.c_float)), 
-    ctypes.POINTER(ctypes.POINTER(ctypes.c_float)), 
-    ctypes.POINTER(ctypes.c_int),
-    ctypes.POINTER(ctypes.c_float),
-    ctypes.c_int,
-    ctypes.c_float,
-    ctypes.POINTER(ctypes.c_float),
-    ctypes.POINTER(ctypes.c_float),
-    ctypes.c_int,
-    ctypes.c_int
-]
-lib.vfcdm1.restype = ctypes.c_int
-
-# Export the function
-vfcdm1 = lib.vfcdm1
-

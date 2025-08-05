@@ -2,7 +2,10 @@
 This toolbox provides computation methods for skin sympathetic nerve activity (SKNA), which can be derived from electrocardiogram (ECG) signals collected under specific recording conditions.
 
 ## Installation
+
+```bash
 pip install pyskna
+```
 
 ## Example
 
@@ -24,8 +27,8 @@ TVSKNA_dict = extract_TVSKNA(input_ary=EKG, fs=4000, smoothing_win_len=0.1, thre
 ```
 See [`test.py`](./tests/test.py)
 
-## Compatibility
-This library has been tested with **Python 3.11** on the following platforms:
+## Compatibility for extract_TVSKNA
+The extract_TVSKNA function uses VFCDM binaries, which has been tested with **Python 3.11** on the following platforms:
 - macOS (Apple Silicon / ARM64) 
 - Linux (x86_64)
 - Windows (x86_64)
@@ -62,20 +65,22 @@ If you use TVSKNA for 4kHz sampling frequency. Please cite the following paper:
 
 
 
-## License
-
-The majority of this repository is licensed under the permissive [MIT License](https://opensource.org/licenses/MIT).
 
 ### ⚠️ Patent Notice
 
-This project includes code that implements an algorithm covered by **U.S. Patent No. US8858450B2**, owned by Ki Chon, Ph.D. and Kihwan Ju, Ph.D. (Assignee: Research Foundation of the State University of New York).
+Some functions (e.g., **`process_tvskna`**) in this library interface with the **VFCDM** algorithm covered by  
+U.S. Patent No. **US8858450B2**, owned by Ki Chon, Ph.D. and Kihwan Ju, Ph.D.  
+(Assignee: Research Foundation of the State University of New York).
 
-The following file is **not covered under the standard MIT license** and is **restricted to non-commercial academic research use**:
+By using VFCDM‑related functions (e.g., **`process_tvskna`**) in PySKNA, you agree to the  
+[LICENSE.md](https://github.com/ykong-phd/vfcdm-binaries/blob/main/LICENSE.md) and [PATENT_NOTICE.md](https://github.com/ykong-phd/vfcdm-binaries/blob/main/PATENT_NOTICE.md) provided in the VFCDM Binaries repository, **solely for non-commercial, academic, and research use**.
 
-- `pyskna/libs/libvfcdm5_win64.dll`
-- `pyskna/libs/libvfcdm5_linux64.so`
-- `pyskna/libs/libvfcdm5_mac64.dylib`
+ 
 
-See [`PATENT_NOTICE.md`](./PATENT_NOTICE.md) and the `LICENSE` file for full licensing terms.
+Please see the PySKNA `LICENSE.md` for more details.
 
-Commercial use of the patented components requires a separate license. Contact [ki.chon@uconn.edu] for details.
+Commercial use of the patented components requires a separate license.  
+
+For patent‑related inquiries, contact **ki.chon@uconn.edu**.  
+
+For all other matters, contact **youngsun.kong.phd@gmail.com**.

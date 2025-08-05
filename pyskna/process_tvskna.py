@@ -8,6 +8,7 @@ from scipy import signal
 from typing import Literal
 from datetime import datetime
 from ._vfcdm import run_vfcdmC
+from ._vfcdm_installer import ensure_vfcdm
 
 
 
@@ -56,6 +57,8 @@ def extract_TVSKNA(
         raise ValueError("The input_ary must be a 1D array")
     if thread_n > 12 or thread_n < 1:
         raise ValueError("Thread number should be 1-12")
+    
+    ensure_vfcdm()
     
 
     input_ary1 = input_ary.copy()

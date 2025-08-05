@@ -5,7 +5,7 @@ description = "This toolbox provides computation methods for skin sympathetic ne
 authors = [{ name = "Youngsun Kong, Ph.D.", email = "youngsun.kong.phd@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.7"
-license = { text = "Proprietary / MIT (See LICENSE.md)" }
+license = { text = "MIT" }
 dependencies = []
 keywords = ["SKNA", "TVSKNA", "iSKNA", "biosignal", "neuroscience", "biomedical", "MIT", "non-commercial"]
 classifiers = [
@@ -21,4 +21,4 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-license-files = ["LICENSE.md", "PATENT_NOTICE.md"]
+license-files = ["LICENSE.md"]
