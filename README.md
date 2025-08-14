@@ -27,6 +27,8 @@ TVSKNA_dict = extract_TVSKNA(input_ary=EKG, fs=4000, smoothing_win_len=0.1, thre
 ```
 See [`test.py`](./tests/test.py)
 
+Also see [`API.md`](./docs/API.md)
+
 ## Compatibility for extract_TVSKNA
 The extract_TVSKNA function uses VFCDM binaries, which has been tested with **Python 3.11** on the following platforms:
 - macOS (Apple Silicon / ARM64) 
