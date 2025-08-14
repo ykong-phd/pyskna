@@ -6,7 +6,7 @@ This document describes the main functions available in the `pySKNA` library.
 
 ## `extract_SKNA(...)`
 
-Extracts the **integrated Skin Sympathetic Nerve Activity (iSKNA)** using bandpass filtering and smoothing from a 1D ECG-derived signal.
+Extracts the **integrated Skin Nerve Activity (iSKNA)** using bandpass filtering and smoothing from a 1D ECG-derived signal.
 
 ### Parameters:
 - **input_ary** (*np.ndarray*): 1D NumPy array of type `float32`, typically an ECG signal.  
@@ -30,7 +30,7 @@ Kusayama, T., Wong, J., Liu, X., He, W., Doytchinova, A., Robinson, E. A., ... &
 
 ## `extract_TVSKNA(...)`
 
-Extracts the **time-varying Skin Sympathetic Nerve Activity (TVSKNA)** using Variable Frequency Complex Demodulation (VFCDM) from a 1D ECG-derived signal.
+Extracts the **time-varying Skin Nerve Activity (TVSKNA)** using Variable Frequency Complex Demodulation (VFCDM) from a 1D ECG-derived signal.
 
 - **VFCDM reference:**
     
