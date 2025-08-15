@@ -94,4 +94,4 @@ If you use this library in your research and publish your results, please cite i
 Kong, Y. (2025). *pySKNA* (Version 0.1.0) [Computer software]. GitHub. https://github.com/ykong-phd/pyskna
 
 **IEEE:**
-[1] Y. Kong, *pySKNA*, Version 0.1.0, GitHub repository, 2025. [Online]. Available: https://github.com/ykong-phd/pyskna
+Y. Kong, *pySKNA*, Version 0.1.0, GitHub repository, 2025. [Online]. Available: https://github.com/ykong-phd/pyskna
