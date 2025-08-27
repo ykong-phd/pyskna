@@ -20,8 +20,8 @@ def fetch_latest_license():
         return response.read().decode("utf-8")
 
 def vfcdm_installed():
-    return os.path.exists(INSTALL_DIR) and any(
-        f.endswith((".dll", ".so", ".dylib")) for f in os.listdir(INSTALL_DIR)
+    return os.path.exists(os.path.join(INSTALL_DIR,'vfcdm_binaries')) and any(
+        f.endswith((".dll", ".so", ".dylib")) for f in os.listdir(os.path.join(INSTALL_DIR,'vfcdm_binaries'))
     )
 
 def ask_terms_acceptance():
