@@ -65,16 +65,15 @@ def download_and_install():
 
 def ensure_vfcdm():
     if vfcdm_installed():
+        print(
+            "By using this function with the VFCDM library, you agree to the terms "
+            f"that can be found in:\n{LICENSE_URL}\n"
+        )
         return True
     if not prompt_license():
         print("You must accept the license to install VFCDM.")
         sys.exit(1)
     download_and_install()
-
-    print(
-        "By using this function with the VFCDM library, you agree to the terms "
-        f"that can be found in:\n{LICENSE_URL}\n"
-    )
 
     return True
 
