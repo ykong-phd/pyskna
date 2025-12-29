@@ -6,7 +6,7 @@ import urllib.request
 import zipfile
 import urllib.request
 
-VFCDM_URL = "https://github.com/ykong-phd/vfcdm-binaries/releases/download/v1.0.0/vfcdm-v1.0.0.zip"
+VFCDM_URL = "https://github.com/ykong-phd/vfcdm-binaries/releases/download/v1.0.1/vfcdm-v1.0.1.zip"
 PACKAGE_DIR = os.path.dirname(__file__)  # Path to pyskna/
 
 # Path to libs/ inside the package
