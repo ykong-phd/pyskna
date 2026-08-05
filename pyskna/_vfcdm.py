@@ -13,6 +13,7 @@ import platform
 import struct
 from pathlib import Path
 
+print("Loading pyskna._vfcdm module")
 _lib = None
 _vfcdm1 = None
 

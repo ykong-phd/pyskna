@@ -22,7 +22,7 @@ def test_iSKNA(EKG):
 
 def test_TVSKNA(EKG):
     
-    SKNA_dict = extract_TVSKNA(input_ary=EKG, fs=4000, smoothing_win_len=0.1,thread_n = 12)
+    SKNA_dict = extract_TVSKNA(input_ary=EKG, fs=4000, filter_len = None, smoothing_win_len=0.1, norm = False, thread_n = 12)
 
     fig,ax = plt.subplots(2,1)
     ax[0].plot(EKG)

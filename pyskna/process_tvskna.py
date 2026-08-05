@@ -34,11 +34,14 @@ def ECG_filt_HF150(sig,fs):
     return filtered_sig
 
 
-def filt_hilbert_reconst(x,smoothing_win_len, verbose) :
+def filt_hilbert_reconst(x,smoothing_win_len, norm, verbose) :
     if verbose > 0:
         print('running Hilbert transform')
         start=datetime.now()
-    hilbert_x = signal.hilbert(x/np.std(x))
+    if norm:
+        hilbert_x = signal.hilbert(x/np.std(x))
+    else:
+        hilbert_x = signal.hilbert(x)
     if verbose > 0:
         print('Hilbert transform runtime: ', datetime.now()-start)
     return uniform_filter1d(np.abs(hilbert_x),size=smoothing_win_len)
@@ -47,7 +50,9 @@ def filt_hilbert_reconst(x,smoothing_win_len, verbose) :
 def extract_TVSKNA(
         input_ary: np.ndarray, # ECG, 1D array of float32
         fs: int = Literal[500, 1000, 4000], # sampling frequency
+        filter_len : int = None, # FIR1 filter length. If None, uses the filter length specified in the publication.
         smoothing_win_len : float = 0.1, # window second (second)
+        norm : bool = True, # normalize
         thread_n : int = 12, # number of thread (1-12)
         verbose : int = 1 # verbose = 0 or 1
         ) -> Dict[str, float]:
@@ -67,10 +72,14 @@ def extract_TVSKNA(
 
     comp1 = np.zeros([12,len(filtered_ekg)])
 
-    if fs == 500:
-        filter_len = 32
+    if filter_len is None:
+        if fs == 500:
+            filter_len = 32
+        else:
+            filter_len = 4000
     else:
-        filter_len = 4000
+        if filter_len < 3 :
+            raise ValueError("filter_len must be at least 3.")
 
     if verbose > 0:
         print('running VFCDM')
@@ -83,23 +92,23 @@ def extract_TVSKNA(
         
     return_dict = {}
     if fs == 4000:
-        return_dict['TVSKNA1_signal'] = filt_hilbert_reconst(np.sum(comp1[1:7,:],axis=0), int(smoothing_win_len * fs), verbose = verbose)
-        return_dict['TVSKNA2_signal'] = filt_hilbert_reconst(np.sum(comp1[2:7,:],axis=0), int(smoothing_win_len * fs), verbose = verbose)
-        return_dict['TVSKNA3_signal'] = filt_hilbert_reconst(np.sum(comp1[3:7,:],axis=0), int(smoothing_win_len * fs), verbose = verbose)
+        return_dict['TVSKNA1_signal'] = filt_hilbert_reconst(np.sum(comp1[1:7,:],axis=0), int(smoothing_win_len * fs), norm = norm, verbose = verbose)
+        return_dict['TVSKNA2_signal'] = filt_hilbert_reconst(np.sum(comp1[2:7,:],axis=0), int(smoothing_win_len * fs), norm = norm, verbose = verbose)
+        return_dict['TVSKNA3_signal'] = filt_hilbert_reconst(np.sum(comp1[3:7,:],axis=0), int(smoothing_win_len * fs), norm = norm, verbose = verbose)
 
         return_dict['TVSKNA1_freq'] = "160 - 1120 Hz"
         return_dict['TVSKNA2_freq'] = "320 - 1120 Hz"
         return_dict['TVSKNA3_freq'] = "480 - 1120 Hz"
     elif fs == 1000:
-        return_dict['TVSKNA1_signal'] = filt_hilbert_reconst(np.sum(comp1[4:12,:],axis=0), int(smoothing_win_len * fs), verbose = verbose)
-        return_dict['TVSKNA2_signal'] = filt_hilbert_reconst(np.sum(comp1[6:12,:],axis=0), int(smoothing_win_len * fs), verbose = verbose)
-        return_dict['TVSKNA3_signal'] = filt_hilbert_reconst(np.sum(comp1[9:12,:],axis=0), int(smoothing_win_len * fs), verbose = verbose)
+        return_dict['TVSKNA1_signal'] = filt_hilbert_reconst(np.sum(comp1[4:12,:],axis=0), int(smoothing_win_len * fs), norm = norm, verbose = verbose)
+        return_dict['TVSKNA2_signal'] = filt_hilbert_reconst(np.sum(comp1[6:12,:],axis=0), int(smoothing_win_len * fs), norm = norm, verbose = verbose)
+        return_dict['TVSKNA3_signal'] = filt_hilbert_reconst(np.sum(comp1[9:12,:],axis=0), int(smoothing_win_len * fs), norm = norm, verbose = verbose)
 
         return_dict['TVSKNA1_freq'] = "160 - 480 Hz"
         return_dict['TVSKNA2_freq'] = "240 - 480 Hz"
         return_dict['TVSKNA3_freq'] = "360 - 480 Hz"
     elif fs == 500:
-        return_dict['TVSKNA_signal'] = filt_hilbert_reconst(np.sum(comp1[8:12,:],axis=0), int(smoothing_win_len * fs), verbose = verbose)
+        return_dict['TVSKNA_signal'] = filt_hilbert_reconst(np.sum(comp1[8:12,:],axis=0), int(smoothing_win_len * fs), norm = norm, verbose = verbose)
         return_dict['TVSKNA_freq'] = "160 - 240 Hz"
     else:
         raise ValueError("FS should be 500, 1000, or 4000 Hz")

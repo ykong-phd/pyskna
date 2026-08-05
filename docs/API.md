@@ -42,7 +42,9 @@ Extracts the **time-varying Skin Nerve Activity (TVSKNA)** using Variable Freque
 - **input_ary** (*np.ndarray*): 1D NumPy array of type `float32`, typically an ECG signal.
   *Note: Many ECG devices apply built-in filtering, which may attenuate or remove SKNA components.*
 - **fs** (*int*): Sampling frequency in Hz. Must be one of: `500`, `1000`, or `4000`.
+- **filter_len** (*int*, optional): FIR1 filter length. If None, uses the filter length specified in the publication. (default: `None`)
 - **smoothing_win_len** (*float*, optional): Length of the smoothing window in seconds (default: `0.1`).
+- **norm** (*bool*, optional): # Normalize the reconstructed signal by dividing it by its standard deviation. (default: `True`)
 - **thread_n** (*int*, optional): Number of parallel threads to use (default: `12`). Acceptable range: 1–12.
 - **verbose** (*int*, optional): Verbosity level (default: `1`). Set to `1` to display progress messages; `0` for silent mode.
 
